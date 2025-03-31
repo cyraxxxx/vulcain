@@ -22,6 +22,8 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+import { useTranslations } from 'next-intl';
+
 interface ChatHeaderProps {
   companion: Companion & {
     messages: Message[];
@@ -32,6 +34,8 @@ export const ChatHeader = ({ companion }: ChatHeaderProps) => {
   const router = useRouter();
   const { user } = useUser();
   const { toast } = useToast();
+
+  const t = useTranslations('chat');
 
   const onDelete = async () => {
     try {
@@ -80,7 +84,8 @@ export const ChatHeader = ({ companion }: ChatHeaderProps) => {
             </div>
           </div>
           <p className="text-xs text-muted-foreground">
-            Created by {companion.userName}
+          {t('createdBy')} {companion.userName}
+            {/* Created by {companion.userName} */}
           </p>
         </div>
       </div>
@@ -91,7 +96,8 @@ export const ChatHeader = ({ companion }: ChatHeaderProps) => {
         <DropdownMenuContent align="end">
           <DropdownMenuItem onClick={onClearMessageHistory}>
             <History className="mr-2 h-4 w-4" />
-            Clear Message History
+            {t('clearHistory')}
+            {/* Clear Message History */}
           </DropdownMenuItem>
           {user?.id === companion.userId && (
             <>
@@ -99,12 +105,12 @@ export const ChatHeader = ({ companion }: ChatHeaderProps) => {
                 onClick={() => router.push(`/companion/${companion.id}`)}
               >
                 <Edit className="mr-2 h-4 w-4" />
-                Edit
+                {t('edit')}
               </DropdownMenuItem>
 
               <DropdownMenuItem onClick={onDelete}>
                 <Trash className="mr-2 h-4 w-4" />
-                Delete
+                {t('delete')}
               </DropdownMenuItem>
             </>
           )}

@@ -44,6 +44,33 @@
 "createCompanionButton": "Create your assistant",
 "editCompanionButton": "Edit your assistant"
     
-  }
+  },
+  "chat": {
+    "createdBy": "Created by",
+    "clearHistory": "Clear Message History",
+    "edit":"Edit",
+    "delete":"Delete",
+    "typeMessage":"Type a message..."
+  },
+  "proModal": {
+    "upgrade": "Upgrade to Pro",
+    "create": "Create",
+    "customAI": "Custom AI",
+    "companion": "Companion",
+    "sendMoreMessages": "Send more than",
+    "sendMoreMessages2": "messages",
+    "sendLongerMessages": "Send messages longer than",
+    "sendLongerMessages2": "characters",
+    "subscibe": "Subscribe",
+    "edit":"Edit",
+    "delete":"Delete",
+    "typeMessage":"Type a message..."
+  },
+  "statusMessage": {
+    "success": "Success",
+    "reachLimit": "You've reached your free request limit. A premium subscription is required to continue.",
+    "somethingWrong":"Something went wrong.",
+    "premiumRequired": "Premium subscription is required"
+    }
 
 }

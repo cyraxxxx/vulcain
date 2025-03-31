@@ -45,6 +45,32 @@
 "createCompanionButton": "Créer votre assistant",
 "editCompanionButton": "Modifier votre assistant"
   
-}
-
+},
+"chat": {
+    "createdBy": "Créé par",
+    "clearHistory": "Effacer l'historique des messages",
+    "edit":"Éditer",
+    "delete":"Supprimer",
+    "typeMessage":"Tapez un message..."
+  },
+  "proModal": {
+    "upgrade": "Mettre à niveau vers Pro",
+    "create": "Créer des",
+    "customAI": "compagnons IA",
+    "companion": "personnalisés",
+    "sendMoreMessages": "Envoyer plus de",
+"sendMoreMessages2": "messages",
+"sendLongerMessages": "Envoyer des messages plus longs que",
+"sendLongerMessages2": "caractères",
+"subscribe": "S'abonner",
+    "edit": "Éditer",
+    "delete": "Supprimer",
+    "typeMessage": "Tapez un message..."
+  },
+  "statusMessage": {
+    "success": "Succès",
+    "reachLimit": "Vous avez atteint la limite de requêtes gratuites. Un abonnement premium est requis pour continuer.",
+    "somethingWrong":"Quelque chose s'est mal passé.",
+    "premiumRequired": "Un abonnement premium est requis"
+    }
 }

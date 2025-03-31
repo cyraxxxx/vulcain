@@ -7,6 +7,8 @@ import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
+import {useTranslations} from 'next-intl';
+
 export const SubscriptionButton = ({ isPro = false }: { isPro: boolean }) => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
@@ -28,6 +30,8 @@ export const SubscriptionButton = ({ isPro = false }: { isPro: boolean }) => {
     }
   };
 
+  const t = useTranslations('Subscriptionbutton');
+
   return (
     <Button
       size="sm"
@@ -35,7 +39,11 @@ export const SubscriptionButton = ({ isPro = false }: { isPro: boolean }) => {
       disabled={loading}
       onClick={onClick}
     >
-      {isPro ? "Manage Subscription" : "Upgrade"}
+      {/* {isPro ? "Manage Subscription" : "Upgrade"} */}
+      {isPro ? t('manageSubrciption') : t('upgrade') }
+
+      
+
       {!isPro && <Sparkles className="ml-2 h-4 w-4 fill-white" />}
     </Button>
   );

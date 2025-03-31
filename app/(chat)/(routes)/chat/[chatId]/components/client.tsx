@@ -11,6 +11,10 @@ import { ChatMessages } from "./chat-messages";
 import { ChatMessageProps } from "./chat-message";
 import { useToast } from "@/components/ui/use-toast";
 
+import {useTranslations} from 'next-intl';
+
+
+
 interface ChatClientProps {
   companion: Companion & {
     messages: Message[];
@@ -28,6 +32,8 @@ export const ChatClient = ({ companion }: ChatClientProps) => {
     setMessages(companion.messages);
   }, [companion, setMessages]);
 
+  const t = useTranslations('statusMessage');
+
   const { input, isLoading, handleInputChange, handleSubmit, setInput } =
     useCompletion({
       api: `/api/chat/${companion.id}`,
@@ -37,17 +43,18 @@ export const ChatClient = ({ companion }: ChatClientProps) => {
         router.refresh();
       },
       onError(e) {
+        
         setMessages(companion.messages);
 
         if (e.message == "Premium subscription is required") {
           toast({
             description:
-              "You've reached your free request limit. A premium subscription is required to continue.",
+            t('reachLimit'),
             variant: "destructive",
           });
         } else {
           toast({
-            description: "Something went wrong.",
+            description: t('somethingWrong'),
             variant: "destructive",
           });
         }
@@ -69,6 +76,8 @@ export const ChatClient = ({ companion }: ChatClientProps) => {
 
     handleSubmit(e);
   };
+
+
 
   return (
     <div className="flex h-full flex-col space-y-2 p-4">

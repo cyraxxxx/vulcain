@@ -7,6 +7,8 @@ import { ChatRequestOptions } from "ai";
 import { SendHorizonal } from "lucide-react";
 import { ChangeEvent, FormEvent } from "react";
 
+import { useTranslations } from 'next-intl';
+
 interface ChatFormProps {
   isLoading: boolean;
   input: string;
@@ -25,6 +27,9 @@ export const ChatForm = ({
   handleInputChange,
   onSubmit,
 }: ChatFormProps) => {
+
+  const t = useTranslations('chat');
+
   return (
     <form
       onSubmit={onSubmit}
@@ -34,7 +39,7 @@ export const ChatForm = ({
         disabled={isLoading}
         value={input}
         onChange={handleInputChange}
-        placeholder="Type a message"
+        placeholder={t('typeMessage')}
         maxLength={MAX_CHAT_MESSAGE_LENGTH}
         className="rounded-lg bg-primary/10"
       />

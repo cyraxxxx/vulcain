@@ -17,16 +17,19 @@ import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
 import { MAX_AI_REQUESTS_FREE_COUNTS, MAX_CHAT_MESSAGE_LENGTH } from "@/constants";
 
+import { useTranslations } from 'next-intl';
+
 export const ProModal = () => {
   const proModal = useProModal();
   const [isMounted, setIsMounted] = useState(false);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const t = useTranslations('proModal');
+
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
   const onSubscribe = async () => {
     // toast({
     //   description:
@@ -54,19 +57,20 @@ export const ProModal = () => {
     return null;
   }
 
+
+  
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
       <DialogContent>
         <DialogHeader className="space-y-4">
-          <DialogTitle className="text-center">Upgrade to Pro</DialogTitle>
+          <DialogTitle className="text-center">{t('upgrade')}</DialogTitle>
           <DialogDescription className="space-y-2 text-center">
             <p>
-              Create
-              <span className="mx-1 font-medium text-sky-500">Custom AI</span>
-              Companions!
+            {t('create')} <span className="mx-1 font-medium text-sky-500">{t('customAI')}</span> {t('companion')} !
+
             </p>
-            <p>Send more than {MAX_AI_REQUESTS_FREE_COUNTS} messages</p>
-            <p>Send messages longer than {MAX_CHAT_MESSAGE_LENGTH} characters</p>
+            <p>{t('sendMoreMessages')}  {MAX_AI_REQUESTS_FREE_COUNTS} {t('sendMoreMessages2')}</p>
+            <p>{t('sendLongerMessages')} {MAX_CHAT_MESSAGE_LENGTH} {t('sendLongerMessages2')}</p>
           </DialogDescription>
         </DialogHeader>
         <Separator />
@@ -75,7 +79,7 @@ export const ProModal = () => {
             $9<span className="text-sm font-normal">.99 / mo</span>
           </p>
           <Button onClick={onSubscribe} disabled={loading} variant="premium">
-            Subscribe
+          {t('subscribe')}
           </Button>
         </div>
       </DialogContent>
