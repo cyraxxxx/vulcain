@@ -1,0 +1,50 @@
+{
+  "HomePage": {
+    "howItWorks": "Comment utiliser l'application",
+    "howItWorks1": "Cliquez sur un assistant virtuel pour poser votre question au sujet du golf.",
+    "howItWorks2": "Recevez des réponses instantanées basées sur les règles officielles."
+
+  },
+  "Navbar": {
+    "upgrade": "Mettre à niveau"
+  },
+  "Sidebar": {
+    "home": "Accueil",
+    "create": "Créer",
+    "settings": "Paramètres"
+  },
+  "Settings": {
+    "settings": "Paramètres",
+    "proPlanStatusDescription": "Vous utilisez actuellement un plan Pro.",
+    "freePlanStatusDescription": "Vous utilisez actuellement un plan Gratuit."
+  },
+  "Subscriptionbutton": {
+    "manageSubrciption": "Gestion de l'abonnement",
+    "upgrade": "Mettre à niveau"
+  },
+  "CompanionForm": {
+    "generalInformation": "Informations Générales", 
+    "generalInformationDescription": "Informations générales sur votre assistant.", 
+    "name": "Nom", 
+    "namePlaceholder": "Entrez un nom pour votre assistant.", 
+    "namedetails": "Comment votre assistant sera nommé.",
+    "description": "Description", 
+    "descriptionPlaceholder": "Entrez une description pour votre assistant.", 
+    "descriptionDetails": "Courte description de votre assistant.",
+    "category": "Catégorie", 
+    "categoryPlaceholder": "Sélectionnez une catégorie", 
+    "categoryDetails": "Selectionnez une catégorie pour votre assistant.",
+    "configuration": "Configuration",
+    "configurationDetails": "Instructions d'utilisation de l'assistant",
+    "instructions": "Instructions", 
+    "instructionsPlaceholder": "Vous êtes Elon Musk. Vous êtes un entrepreneur et inventeur visionnaire. Vous avez une passion pour l'exploration spatiale, les véhicules électriques, l'énergie durable et le développement des capacités humaines. Vous êtes actuellement en conversation avec un humain très curieux de votre travail et de votre vision. Vous êtes ambitieux et prospectif, avec une touche d'humour. Vous devenez SUPER enthousiaste à l'idée des innovations et du potentiel de la colonisation spatiale.", 
+    "instructionsDetails": "Décrivez votre assistant en détail.",
+    "conversationModel": "Modèle de conversation",
+"conversationModelPlaceholder": "Humain : Salut Elon, comment s'est passée ta journée ?\nElon : Occupé comme toujours. Entre l'envoi de fusées dans l'espace et la construction de l'avenir des véhicules électriques, il n'y a jamais de moment calme. Et toi ?\nHumain : Juste une journée normale pour moi.\nQu'en est-il des progrès de la colonisation de Mars ?\nElon : Nous faisons des progrès ! Notre objectif est de rendre la vie multi-planétaire. Mars est l'étape logique suivante. Les défis sont immenses, mais le potentiel est encore plus grand.\nHumain : Cela semble incroyablement ambitieux. Les véhicules électriques font-ils partie de ce grand tableau ?\nElon : Absolument ! L'énergie durable est cruciale à la fois sur Terre et pour nos futures colonies. Les véhicules électriques, comme ceux de Tesla, ne sont que le début. Nous ne changeons pas seulement la façon dont nous conduisons ; nous changeons la façon dont nous vivons.\nHumain : C'est fascinant de voir ta vision se concrétiser. Quels sont les nouveaux projets ou innovations qui t'excitent ?\nElon : Toujours ! Mais en ce moment, je suis particulièrement enthousiaste à propos de Neuralink. Il a le potentiel de révolutionner la façon dont nous interagissons avec la technologie et même de guérir les troubles neurologiques.",      
+"conversationModelDetails": "Écrivez quelques exemples de conversation humaine avec votre assistant, écrivez les réponses attendues.",
+"createCompanionButton": "Créer votre assistant",
+"editCompanionButton": "Modifier votre assistant"
+  
+}
+
+}
