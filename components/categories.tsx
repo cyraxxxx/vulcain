@@ -1,23 +1,26 @@
 "use client";
 
 import qs from "query-string";
-import { Category } from "@prisma/client";
+import { GeneralCategory } from "@prisma/client";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
-interface CategoriesProps {
-  data: Category[];
+import { useTranslations } from 'next-intl';
+
+interface GeneralCategoriesProps {
+  data: GeneralCategory[];
 }
 
-export const Categories = ({ data }: CategoriesProps) => {
+export const GeneralCategories = ({ data }: GeneralCategoriesProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const t = useTranslations('Categories'); 
 
-  const categoryId = searchParams.get("categoryId");
+  const generalCategoryId = searchParams.get("generalCategoryId");
 
   const onClick = (id: string | undefined) => {
-    const query = { categoryId: id };
+    const query = { generalCategoryId: id };
 
     const url = qs.stringifyUrl(
       {
@@ -50,10 +53,10 @@ export const Categories = ({ data }: CategoriesProps) => {
           md:py-3 
           md:text-sm
         `,
-          !categoryId ? "bg-primary/25" : "bg-primary/10",
+          !generalCategoryId ? "bg-primary/25" : "bg-primary/10",
         )}
       >
-        Newest
+        {t('newest')}
       </button>
       {data.map((item) => (
         <button
@@ -74,11 +77,13 @@ export const Categories = ({ data }: CategoriesProps) => {
             md:py-3 
             md:text-sm
           `,
-            item.id === categoryId ? "bg-primary/25" : "bg-primary/10",
+            item.id === generalCategoryId ? "bg-primary/25" : "bg-primary/10",
           )}
           key={item.id}
         >
-          {item.name}
+          {/* {item.name} */}
+          {t(item.name.toLowerCase())} 
+          {/* In this example, we're using the item.name.toLowerCase() to match the keys in your translations file. */}
         </button>
       ))}
     </div>

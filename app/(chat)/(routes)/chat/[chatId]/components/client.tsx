@@ -2,7 +2,7 @@
 
 import { useCompletion } from "ai/react";
 import { FormEvent, useEffect, useState } from "react";
-import { Companion, Message } from "@prisma/client";
+import { GeneralCompanion, GeneralMessage } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
 import { ChatForm } from "./chat-form";
@@ -16,27 +16,32 @@ import {useTranslations} from 'next-intl';
 
 
 interface ChatClientProps {
-  companion: Companion & {
-    messages: Message[];
+  generalCompanion: GeneralCompanion & {
+    generalMessages: GeneralMessage[];
   };
 }
 
-export const ChatClient = ({ companion }: ChatClientProps) => {
+export const ChatClient = ({ generalCompanion }: ChatClientProps) => {
+//
+  if (!generalCompanion) {
+    throw new Error("Companion is required");
+  }
+//
   const router = useRouter();
   const { toast } = useToast();
-  const [messages, setMessages] = useState<ChatMessageProps[]>(
-    companion.messages,
+  const [generalMessages, setMessages] = useState<ChatMessageProps[]>(
+    generalCompanion.generalMessages,
   );
 
   useEffect(() => {
-    setMessages(companion.messages);
-  }, [companion, setMessages]);
+    setMessages(generalCompanion.generalMessages);
+  }, [generalCompanion, setMessages]);
 
   const t = useTranslations('statusMessage');
 
   const { input, isLoading, handleInputChange, handleSubmit, setInput } =
     useCompletion({
-      api: `/api/chat/${companion.id}`,
+      api: `/api/chat/${generalCompanion.id}`,
       onFinish(prompt, completion) {
         setInput("");
 
@@ -44,7 +49,7 @@ export const ChatClient = ({ companion }: ChatClientProps) => {
       },
       onError(e) {
         
-        setMessages(companion.messages);
+        setMessages(generalCompanion.generalMessages);
 
         if (e.message == "Premium subscription is required") {
           toast({
@@ -81,11 +86,11 @@ export const ChatClient = ({ companion }: ChatClientProps) => {
 
   return (
     <div className="flex h-full flex-col space-y-2 p-4">
-      <ChatHeader companion={companion} />
+      <ChatHeader generalCompanion={generalCompanion} />
       <ChatMessages
-        companion={companion}
+        generalCompanion={generalCompanion}
         isLoading={isLoading}
-        messages={messages}
+        generalMessages={generalMessages}
       />
       <ChatForm
         isLoading={isLoading}

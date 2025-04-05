@@ -63,23 +63,28 @@ export const Companions = ({ data }: CompanionsProps) => {
 
 import Image from "next/image";
 import Link from "next/link";
-import { Companion } from "@prisma/client";
+import { GeneralCompanion } from "@prisma/client";
 import { MessagesSquare } from "lucide-react";
 
 import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 
-interface CompanionsProps {
-  data: (Companion & { _count?: { messages?: number } })[];
+import {useTranslations} from 'next-intl';
+
+interface GeneralCompanionsProps {
+  data: (GeneralCompanion & { _count?: { messages?: number } })[];
 }
 
-export const Companions = ({ data }: CompanionsProps) => {
+export const GeneralCompanions = ({ data }: GeneralCompanionsProps) => {
+
+  const t = useTranslations('Companions');
+
   if (data.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center space-y-3 pt-10">
-        <div className="relative h-60 w-60">
+        {/* <div className="relative h-60 w-60">
           <Image fill className="grayscale" src="/empty.png" alt="Empty" />
-        </div>
-        <p className="text-sm text-muted-foreground">No companions found.</p>
+        </div> */}
+        <p className="text-sm text-muted-foreground">{t('notFound')}.</p>
       </div>
     );
   }

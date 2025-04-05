@@ -1,18 +1,24 @@
 const { PrismaClient } = require("@prisma/client");
 
+//import { useTranslations } from 'next-intl';
+//const t = useTranslations('Categories');
+
 const db = new PrismaClient();
 
 async function main() {
   try {
-    await db.category.createMany({
+    await db.generalCategory.createMany({
       data: [
-        { name: "Famous People" },
-        { name: "Movies & TV" },
-        { name: "Musicians" },
-        { name: "Games" },
-        { name: "Animals" },
-        { name: "Philosophy" },
-        { name: "Scientists" },
+        //{ name: t('nutrition') },
+        { name: "Nutrition" },
+        { name: "Sports" },
+        //{ name: "Famous People" },
+        //{ name: "Movies & TV" },
+        //{ name: "Musicians" },
+        //{ name: "Games" },
+        //{ name: "Animals" },
+        //{ name: "Philosophy" },
+        //{ name: "Scientists" },
       ],
     });
   } catch (error) {

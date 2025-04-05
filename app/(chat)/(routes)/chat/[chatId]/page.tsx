@@ -18,12 +18,12 @@ const ChatIdPage = async ({ params }: ChatIdPageProps) => {
     return redirectToSignIn();
   }
 
-  const companion = await prismadb.companion.findUnique({
+  const generalCompanion = await prismadb.generalCompanion.findUnique({
     where: {
       id: params.chatId,
     },
     include: {
-      messages: {
+      generalMessages: {
         orderBy: {
           createdAt: "asc",
         },
@@ -34,11 +34,11 @@ const ChatIdPage = async ({ params }: ChatIdPageProps) => {
     },
   });
 
-  if (!companion) {
+  if (!generalCompanion) {
     return redirect("/");
   }
 
-  return <ChatClient companion={companion} />;
+  return <ChatClient generalCompanion={generalCompanion} />;
 };
 
 export default ChatIdPage;

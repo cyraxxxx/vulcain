@@ -4,7 +4,7 @@ import { Pinecone } from "@pinecone-database/pinecone";
 import { PineconeStore } from "@langchain/pinecone";
 
 export type CompanionKey = {
-  companionId: string;
+  generalCompanionId: string;
   modelName: string;
   userId: string;
 };
@@ -22,7 +22,7 @@ export class MemoryManager {
 
   public async vectorSearch(
     recentChatHistory: string,
-    companionFileName: string,
+    generalCompanionFileName: string,
   ) {
     const Pinecone = <Pinecone>this.vectorDBClient;
 
@@ -36,7 +36,7 @@ export class MemoryManager {
     );
 
     const similarDocs = await vectorStore
-      .similaritySearch(recentChatHistory, 3, { fileName: companionFileName })
+      .similaritySearch(recentChatHistory, 3, { fileName: generalCompanionFileName })
       .catch((err) => {
         console.log("WARNING: failed to get vector search results.", err);
       });
@@ -51,7 +51,7 @@ export class MemoryManager {
   }
 
   private generateRedisCompanionKey(companionKey: CompanionKey): string {
-    return `${companionKey.companionId}-${companionKey.modelName}-${companionKey.userId}`;
+    return `${companionKey.generalCompanionId}-${companionKey.modelName}-${companionKey.userId}`;
   }
 
   public async writeToHistory(text: string, companionKey: CompanionKey) {

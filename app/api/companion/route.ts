@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const user = await currentUser();
-    const { src, name, description, instructions, seed, categoryId } = body;
+    const { src, name, description, instructions, seed, generalCategoryId } = body;
 
     if (!user || !user.id || !user.username) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
       !description ||
       !instructions ||
       !seed ||
-      !categoryId
+      !generalCategoryId
     ) {
       return new NextResponse("Missing required fields", { status: 400 });
     }
@@ -34,9 +34,9 @@ export async function POST(req: Request) {
       return new NextResponse("Pro subscription required", { status: 403 });
     }
 
-    const companion = await prismadb.companion.create({
+    const generalCompanion = await prismadb.generalCompanion.create({
       data: {
-        categoryId,
+        generalCategoryId,
         userId: user.id,
         ///
         userName: user.username,
@@ -50,9 +50,9 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json(companion);
+    return NextResponse.json(generalCompanion);
   } catch (error) {
-    console.log("[COMPANION_POST]", error);
+    console.log("[GENERALCOMPANION_POST]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

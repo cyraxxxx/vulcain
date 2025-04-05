@@ -6,14 +6,14 @@ import { checkSubscription } from "@/lib/subscription";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { companionId: string } },
+  { params }: { params: { generalCompanionId: string } },
 ) {
   try {
     const body = await req.json();
     const user = await currentUser();
-    const { src, name, description, instructions, seed, categoryId } = body;
+    const { src, name, description, instructions, seed, generalCategoryId } = body;
 
-    if (!params.companionId) {
+    if (!params.generalCompanionId) {
       return new NextResponse("Companion ID required", { status: 400 });
     }
 
@@ -27,7 +27,7 @@ export async function PATCH(
       !description ||
       !instructions ||
       !seed ||
-      !categoryId
+      !generalCategoryId
     ) {
       return new NextResponse("Missing required fields", { status: 400 });
     }
@@ -38,13 +38,13 @@ export async function PATCH(
       return new NextResponse("Pro subscription required", { status: 403 });
     }
 
-    const companion = await prismadb.companion.update({
+    const generalCompanion = await prismadb.generalCompanion.update({
       where: {
-        id: params.companionId,
+        id: params.generalCompanionId,
         userId: user.id,
       },
       data: {
-        categoryId,
+        generalCategoryId,
         userId: user.id,
         userName: user.firstName,
         src,
@@ -55,16 +55,16 @@ export async function PATCH(
       },
     });
 
-    return NextResponse.json(companion);
+    return NextResponse.json(generalCompanion);
   } catch (error) {
-    console.log("[COMPANION_PATCH]", error);
+    console.log("[GENERALCOMPANION_PATCH]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { companionId: string } },
+  { params }: { params: { generalCompanionId: string } },
 ) {
   try {
     const { userId } = auth();
@@ -73,16 +73,16 @@ export async function DELETE(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const companion = await prismadb.companion.delete({
+    const generalCompanion = await prismadb.generalCompanion.delete({
       where: {
         userId,
-        id: params.companionId,
+        id: params.generalCompanionId,
       },
     });
 
-    return NextResponse.json(companion);
+    return NextResponse.json(generalCompanion);
   } catch (error) {
-    console.log("[COMPANION_DELETE]", error);
+    console.log("[GENERALCOMPANION_DELETE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

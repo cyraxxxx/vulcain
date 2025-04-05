@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { Wand2 } from "lucide-react";
-import { Category, Companion } from "@prisma/client";
+import { GeneralCategory, GeneralCompanion } from "@prisma/client";
 
 import {
   Form,
@@ -70,7 +70,7 @@ const formSchema = z.object({
   // categoryId: z.string().min(1, {
   //   message: "Category is required",
   // }),
-  categoryId: z
+  generalCategoryId: z
   .string()
   .nullable()
   .refine((val) => val !== null && val.length >= 1, {
@@ -79,15 +79,15 @@ const formSchema = z.object({
   isPublished: z.boolean(), // J'ai ajouté cette ligne pour le champ isPublished
 });
 
-interface CompanionFormProps {
-  categories: Category[];
-  initialData: Companion | null;
+interface GeneralCompanionFormProps {
+  generalCategories: GeneralCategory[];
+  initialData: GeneralCompanion | null;
 }
 
-export const CompanionForm = ({
-  categories,
+export const GeneralCompanionForm = ({
+  generalCategories,
   initialData,
-}: CompanionFormProps) => {
+}: GeneralCompanionFormProps) => {
   const { toast } = useToast();
   const router = useRouter();
 
@@ -101,7 +101,7 @@ export const CompanionForm = ({
       instructions: "",
       seed: "",
       src: "",
-      categoryId: undefined,
+      generalCategoryId: undefined,
       isPublished: true, // J'ai ajouté cette ligne pour le champ isPublished
     },
   });
@@ -206,7 +206,7 @@ export const CompanionForm = ({
             />
             <FormField
               control={form.control}
-              name="categoryId"
+              name="generalCategoryId"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t('category')}</FormLabel>
@@ -228,9 +228,9 @@ export const CompanionForm = ({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {categories.map((category) => (
-                        <SelectItem key={category.id} value={category.id}>
-                          {category.name}
+                      {generalCategories.map((generalCategory) => (
+                        <SelectItem key={generalCategory.id} value={generalCategory.id}>
+                          {generalCategory.name}
                         </SelectItem>
                       ))}
                     </SelectContent>

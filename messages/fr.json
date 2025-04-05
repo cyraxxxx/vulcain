@@ -13,6 +13,14 @@
     "create": "Créer",
     "settings": "Paramètres"
   },
+  "Search": {
+    "search": "Recherche..."
+  },
+  "Categories": {
+    "newest": "Récents",
+    "nutrition": "Alimentation",
+    "sports": "Sports"
+  },
   "Settings": {
     "settings": "Paramètres",
     "proPlanStatusDescription": "Vous utilisez actuellement un plan Pro.",
@@ -21,6 +29,9 @@
   "Subscriptionbutton": {
     "manageSubrciption": "Gestion de l'abonnement",
     "upgrade": "Mettre à niveau"
+  },
+  "Companions": {
+"notFound": "Aucun assistant trouvé"
   },
   "CompanionForm": {
     "generalInformation": "Informations Générales", 
@@ -51,7 +62,10 @@
     "clearHistory": "Effacer l'historique des messages",
     "edit":"Éditer",
     "delete":"Supprimer",
-    "typeMessage":"Tapez un message..."
+    "typeMessage":"Tapez un message...",
+    "hi":"Bonjour! je suis",
+"howCanIHelp":"comment puis-je vous aider",
+"howCanIHelpGolf":"Mon rôle est d'assurer le bon réroulement d'une partie, prendre des décisions sur des situations complexes et gérer les désaccords entre joueurs en appliquant les règles du R&A et de l'USGA avec précision. Comment puis-je vous aider"
   },
   "proModal": {
     "upgrade": "Mettre à niveau vers Pro",
@@ -66,6 +80,11 @@
     "edit": "Éditer",
     "delete": "Supprimer",
     "typeMessage": "Tapez un message..."
+  },
+  "stripe": {
+    "productName": "Vulcain Pro",
+    "productDescription": "Créez des Assistants IA personnalisés",
+    "paymentInterval":"mois"
   },
   "statusMessage": {
     "success": "Succès",

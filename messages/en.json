@@ -12,6 +12,14 @@
     "create": "Create",
     "settings": "Settings"
   },
+  "Search": {
+    "search": "Search..."
+  },
+  "Categories": {
+    "newest": "Newest",
+    "nutrition": "Nutrition",
+    "sports": "Sports"
+  },
   "Settings": {
     "settings": "Settings",
     "proPlanStatusDescription": "You are currently on a Pro plan.",
@@ -20,6 +28,9 @@
   "Subscriptionbutton": {
     "manageSubrciption": "Manage Subscription",
     "upgrade": "Upgrade"
+  },
+  "Companions": {
+"notFound": "No assistant found"
   },
   "CompanionForm": {
     "generalInformation": "General Information",
@@ -50,7 +61,10 @@
     "clearHistory": "Clear Message History",
     "edit":"Edit",
     "delete":"Delete",
-    "typeMessage":"Type a message..."
+    "typeMessage":"Type a message...",
+    "hi":"Hi! I'm",
+"howCanIHelp":"how can I help you",
+"howCanIHelpGolf":"My role is to ensure the smooth running of a game, make decisions on complex situations, and manage disputes between players by applying the rules of the R&A and USGA with precision. How can I assist you"
   },
   "proModal": {
     "upgrade": "Upgrade to Pro",
@@ -65,6 +79,11 @@
     "edit":"Edit",
     "delete":"Delete",
     "typeMessage":"Type a message..."
+  },
+  "stripe": {
+    "productName": "Vulcain Pro",
+    "productDescription": "Create Custom AI Assistants",
+    "paymentInterval":"month"
   },
   "statusMessage": {
     "success": "Success",

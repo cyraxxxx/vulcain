@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/components/ui/use-toast";
 import { useUser } from "@clerk/nextjs";
-import { Companion, Message } from "@prisma/client";
+import { GeneralCompanion, GeneralMessage } from "@prisma/client";
 import axios from "axios";
 import {
   ChevronLeft,
@@ -25,12 +25,12 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from 'next-intl';
 
 interface ChatHeaderProps {
-  companion: Companion & {
-    messages: Message[];
+  generalCompanion: GeneralCompanion & {
+    generalMessages: GeneralMessage[];
   };
 }
 
-export const ChatHeader = ({ companion }: ChatHeaderProps) => {
+export const ChatHeader = ({ generalCompanion }: ChatHeaderProps) => {
   const router = useRouter();
   const { user } = useUser();
   const { toast } = useToast();
@@ -39,7 +39,7 @@ export const ChatHeader = ({ companion }: ChatHeaderProps) => {
 
   const onDelete = async () => {
     try {
-      await axios.delete(`/api/companion/${companion.id}`);
+      await axios.delete(`/api/companion/${generalCompanion.id}`);
 
       toast({ description: "Success." });
 
@@ -55,7 +55,7 @@ export const ChatHeader = ({ companion }: ChatHeaderProps) => {
 
   const onClearMessageHistory = async () => {
     try {
-      await axios.delete(`/api/companion/${companion.id}/history`);
+      await axios.delete(`/api/companion/${generalCompanion.id}/history`);
 
       toast({ description: "Success." });
 
@@ -74,17 +74,17 @@ export const ChatHeader = ({ companion }: ChatHeaderProps) => {
         <Button size="icon" variant="ghost" onClick={() => router.back()}>
           <ChevronLeft className="h-8 w-8" />
         </Button>
-        <BotAvatar src={companion.src} />
+        <BotAvatar src={generalCompanion.src} />
         <div className="flex flex-col gap-y-1">
           <div className="flex items-center gap-x-2">
-            <p className="font-bold">{companion.name}</p>
+            <p className="font-bold">{generalCompanion.name}</p>
             <div className="flex items-center text-xs text-muted-foreground">
               <MessageSquare className="mr-1 h-3 w-3" />
-              {companion.messages.length}
+              {generalCompanion.generalMessages.length}
             </div>
           </div>
           <p className="text-xs text-muted-foreground">
-          {t('createdBy')} {companion.userName}
+          {t('createdBy')} {generalCompanion.userName}
             {/* Created by {companion.userName} */}
           </p>
         </div>
@@ -99,10 +99,10 @@ export const ChatHeader = ({ companion }: ChatHeaderProps) => {
             {t('clearHistory')}
             {/* Clear Message History */}
           </DropdownMenuItem>
-          {user?.id === companion.userId && (
+          {user?.id === generalCompanion.userId && (
             <>
               <DropdownMenuItem
-                onClick={() => router.push(`/companion/${companion.id}`)}
+                onClick={() => router.push(`/companion/${generalCompanion.id}`)}
               >
                 <Edit className="mr-2 h-4 w-4" />
                 {t('edit')}

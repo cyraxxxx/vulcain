@@ -32,6 +32,8 @@ export async function GET() {
     }
 
     const stripeSession = await stripe.checkout.sessions.create({
+      locale: 'fr-CA',
+      //locale: 'en',
       success_url: settingsUrl,
       cancel_url: settingsUrl,
       payment_method_types: ["card"],
@@ -41,10 +43,10 @@ export async function GET() {
       line_items: [
         {
           price_data: {
-            currency: "USD",
+            currency: "CAD",
             product_data: {
-              name: "Companion Pro",
-              description: "Create Custom AI Companions"
+              name: "Vulcain Pro",
+              description: "Créez des Assistants IA personnalisés"
             },
             unit_amount: 999,
             recurring: {

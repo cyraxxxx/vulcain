@@ -56,13 +56,13 @@ export async function POST(
       }
     }
 
-    const companion = await prismadb.companion.update({
+    const generalCompanion = await prismadb.generalCompanion.update({
       where: {
         //id: (await params).chatId,
         id: params.chatId,
       },
       data: {
-        messages: {
+        generalMessages: {
           create: {
             content: prompt,
             role: "user",
@@ -72,14 +72,14 @@ export async function POST(
       },
     });
 
-    if (!companion) {
+    if (!generalCompanion) {
       return new NextResponse("Companion not found", { status: 404 });
     }
 
-    const companion_file_name = companion.id! + ".txt";
+    const generalCompanion_file_name = generalCompanion.id! + ".txt";
 
     const companionKey = {
-      companionId: companion.id,
+      generalCompanionId: generalCompanion.id,
       userId: user.id,
       modelName: "gpt-3.5-turbo",
     };
@@ -91,7 +91,7 @@ export async function POST(
 
     const records = await memoryManager.readLatestHistory(companionKey);
     if (records.length === 0) {
-      await memoryManager.seedChatHistory(companion.seed, "\n\n", companionKey);
+      await memoryManager.seedChatHistory(generalCompanion.seed, "\n\n", companionKey);
     }
     await memoryManager.writeToHistory("User: " + prompt + "\n", companionKey);
 
@@ -105,7 +105,7 @@ export async function POST(
 
     const similarDocs = await memoryManager.vectorSearch(
       recentChatHistory,
-      companion_file_name,
+      generalCompanion_file_name,
     );
 
     console.log("recentChatHistory", recentChatHistory, similarDocs);
@@ -129,13 +129,13 @@ export async function POST(
     const resp = await openai
       .invoke(
         `
-        ${companion.instructions}
+        ${generalCompanion.instructions}
 
         Try to give responses that are straight to the point. 
-        Below are relevant details about ${companion.name}'s past and the conversation you are in.
+        Below are relevant details about ${generalCompanion.name}'s past and the conversation you are in.
         ${relevantHistory}
 
-        ${recentChatHistory}\n${companion.name}:`,
+        ${recentChatHistory}\n${generalCompanion.name}:`,
       )
       .catch(console.error);
 
@@ -152,13 +152,13 @@ export async function POST(
 
     memoryManager.writeToHistory("" + content, companionKey);
 
-    await prismadb.companion.update({
+    await prismadb.generalCompanion.update({
       where: {
         //id: (await params).chatId,
         id: params.chatId,
       },
       data: {
-        messages: {
+        generalMessages: {
           create: {
             content: content,
             role: "system",

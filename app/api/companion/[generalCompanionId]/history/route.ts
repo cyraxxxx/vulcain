@@ -5,12 +5,12 @@ import { NextResponse } from "next/server";
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { companionId: string } },
+  { params }: { params: { generalCompanionId: string } },
 ) {
   try {
     const user = await currentUser();
 
-    if (!params.companionId) {
+    if (!params.generalCompanionId) {
       return new NextResponse("Companion ID is required", { status: 400 });
     }
 
@@ -23,22 +23,22 @@ export async function DELETE(
 
     const memoryManager = await MemoryManager.getInstance();
     const companionKey = {
-      companionId: params.companionId,
+      generalCompanionId: params.generalCompanionId,
       userId: user.id,
       modelName: "gpt-3.5-turbo",
     };
     await memoryManager.clearHistory(companionKey);
 
-    await prismadb.message.deleteMany({
+    await prismadb.generalMessage.deleteMany({
       where: {
-        companionId: params.companionId,
+        generalCompanionId: params.generalCompanionId,
         userId: user.id,
       },
     });
 
     return NextResponse.json("Success");
   } catch (error) {
-    console.log("[COMPANION_PATCH]", error);
+    console.log("[GENERALCOMPANION_PATCH]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
 }

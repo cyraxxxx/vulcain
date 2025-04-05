@@ -902,14 +902,41 @@ isPublished Boolean @default(false)
 
   category   Category? @relation(fields: [categoryId], references: [id])
   categoryId String?
-
   messages Message[] 
 
   @@index([categoryId])
   //@@fulltext([name])
 }
+model GeneralCompanion {
+  id           String @id @default(uuid())
+  userId       String
+  userName     String
+  src          String
+  name         String @db.Text
+  
+  description  String
+  //characterDescription Json
+  instructions String @db.Text
+  seed         String @db.Text
+isPublished Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  generalCategory   GeneralCategory? @relation(fields: [generalCategoryId], references: [id])
+  generalCategoryId String?
+
+  generalMessages GeneralMessage[] 
+
+  @@index([generalCategoryId])
+  //@@fulltext([name])
+}
 
 enum CompanionRole {
+  user
+  system
+}
+
+enum GeneralCompanionRole {
   user
   system
 }
@@ -927,6 +954,21 @@ model Message {
   companion Companion @relation(fields: [companionId], references: [id], onDelete: Cascade)
 
   @@index([companionId])
+}
+
+model GeneralMessage {
+  id String @id @default(uuid())
+  role GeneralCompanionRole
+  content String @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  generalCompanionId String
+  userId String
+
+  generalCompanion GeneralCompanion @relation(fields: [generalCompanionId], references: [id], onDelete: Cascade)
+
+  @@index([generalCompanionId])
 }
 
 model UserSettings {
@@ -1224,3 +1266,13 @@ model CourseSubscription {
 }
 /////
 
+model GeneralCategory {
+  id String @id @default(uuid())
+  name String @unique
+  //courses Course[]
+  // ajout pour events
+  //events UserEvent[]
+
+  //UserProfile UserProfile[]
+  generalCompanion GeneralCompanion[]
+}

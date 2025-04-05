@@ -1,5 +1,5 @@
-import { Categories } from "@/components/categories";
-import { Companions } from "@/components/companions";
+import { GeneralCategories } from "@/components/categories";
+import { GeneralCompanions } from "@/components/companions";
 import { SearchInput } from "@/components/search-input";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import prismadb from "@/lib/prismadb";
@@ -10,7 +10,7 @@ import {useTranslations} from 'next-intl';
 
 interface PageProps {
   searchParams: {
-    categoryId: string;
+    generalCategoryId: string;
     name: string;
   };
 }
@@ -37,9 +37,9 @@ const Page = async ({ searchParams }: PageProps) => {
 
   let data;
   if (userId) {
-    data = await prismadb.companion.findMany({
+    data = await prismadb.generalCompanion.findMany({
       where: {
-        categoryId: searchParams.categoryId,
+        generalCategoryId: searchParams.generalCategoryId,
         name: {
           contains: searchParams.name,
           //mode: "insensitive",
@@ -51,7 +51,7 @@ const Page = async ({ searchParams }: PageProps) => {
       include: {
         _count: {
           select: {
-            messages: {
+            generalMessages: {
               where: {
                 userId,
               },
@@ -61,9 +61,9 @@ const Page = async ({ searchParams }: PageProps) => {
       },
     });
   } else {
-    data = await prismadb.companion.findMany({
+    data = await prismadb.generalCompanion.findMany({
       where: {
-        categoryId: searchParams.categoryId,
+        generalCategoryId: searchParams.generalCategoryId,
         name: {
           contains: searchParams.name,
           //mode: "insensitive",
@@ -75,20 +75,18 @@ const Page = async ({ searchParams }: PageProps) => {
     });
   }
 
-  const categories = await prismadb.category.findMany();
+  const generalCategories = await prismadb.generalCategory.findMany();
 
 
 
   return (
 
     <div className="h-full space-y-2 p-4">
-      {/* <SearchInput /> */}
-      {/* <Categories data={categories} /> */}
+      <SearchInput />
+      <GeneralCategories data={generalCategories} />
       <HomePageTitle />
-
-      <Companions data={data} />
+      <GeneralCompanions data={data} />
     </div>
-
   );
 };
 

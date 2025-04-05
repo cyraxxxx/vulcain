@@ -7,15 +7,19 @@ import { ChangeEventHandler, useEffect, useState } from "react";
 import { useDebounce } from "@/hooks/use-debounce";
 import qs from "query-string";
 
+import {useTranslations} from 'next-intl';
+
 export const SearchInput = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const categoryId = searchParams.get("categoryId");
+  const generalCategoryId = searchParams.get("generalCategoryId");
   const name = searchParams.get("name");
 
   const [value, setValue] = useState(name || "");
   const debouncedValue = useDebounce<string>(value, 500);
+
+  const t = useTranslations('Search');
 
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setValue(e.target.value);
@@ -24,7 +28,7 @@ export const SearchInput = () => {
   useEffect(() => {
     const query = {
       name: debouncedValue,
-      categoryId: categoryId,
+      generalCategoryId: generalCategoryId,
     };
 
     const url = qs.stringifyUrl(
@@ -33,7 +37,7 @@ export const SearchInput = () => {
     );
 
     router.push(url);
-  }, [debouncedValue, router, categoryId]);
+  }, [debouncedValue, router, generalCategoryId]);
 
   return (
     <div className="relative">
@@ -41,7 +45,7 @@ export const SearchInput = () => {
       <Input
         onChange={onChange}
         value={value}
-        placeholder="Search..."
+        placeholder={t('search')}
         className="bg-primary/10 pl-10"
       />
     </div>
