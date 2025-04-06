@@ -188,7 +188,7 @@ export const GeneralCompanionForm = ({
               name="description"
               control={form.control}
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="col-span-2 md:col-span-1">
                   <FormLabel>{t('description')}</FormLabel>
                   <FormControl>
                     <Input
@@ -208,7 +208,7 @@ export const GeneralCompanionForm = ({
               control={form.control}
               name="generalCategoryId"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="col-span-2 md:col-span-1">
                   <FormLabel>{t('category')}</FormLabel>
                   <Select
                     disabled={isLoading}

@@ -60,7 +60,7 @@
 "chat": {
     "createdBy": "Créé par",
     "clearHistory": "Effacer l'historique des messages",
-    "edit":"Éditer",
+    "edit":"Modifier",
     "delete":"Supprimer",
     "typeMessage":"Tapez un message...",
     "hi":"Bonjour! je suis",
@@ -77,7 +77,7 @@
 "sendLongerMessages": "Envoyer des messages plus longs que",
 "sendLongerMessages2": "caractères",
 "subscribe": "S'abonner",
-    "edit": "Éditer",
+    "edit": "Modifier",
     "delete": "Supprimer",
     "typeMessage": "Tapez un message..."
   },

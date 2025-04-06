@@ -71,7 +71,7 @@ import { Card, CardFooter, CardHeader } from "@/components/ui/card";
 import {useTranslations} from 'next-intl';
 
 interface GeneralCompanionsProps {
-  data: (GeneralCompanion & { _count?: { messages?: number } })[];
+  data: (GeneralCompanion & { _count?: { generalMessages?: number } })[];
 }
 
 export const GeneralCompanions = ({ data }: GeneralCompanionsProps) => {
@@ -114,7 +114,7 @@ export const GeneralCompanions = ({ data }: GeneralCompanionsProps) => {
                 <p className="lowercase">@{item.userName}</p>
                 <div className="flex items-center">
                   <MessagesSquare className="mr-1 h-3 w-3" />
-                  {item._count?.messages ? item._count.messages : 0}
+                  {item._count?.generalMessages ? item._count.generalMessages : 0}
                 </div>
               </CardFooter>
             </Link>

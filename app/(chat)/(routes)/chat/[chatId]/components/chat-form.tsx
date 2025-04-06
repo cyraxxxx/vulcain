@@ -1,4 +1,4 @@
-/* "use client";
+"use client";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -49,7 +49,7 @@ export const ChatForm = ({
     </form>
   );
 };
- */
+
 
 
 
@@ -63,7 +63,7 @@ export const ChatForm = ({
 
 
 //reconnaissance vocale
-"use client";
+/* "use client";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -86,11 +86,11 @@ interface ChatFormProps {
   ) => void;
 }
 
-/* const SpeechRecognition = 
-  typeof window !== "undefined" && 
-  (window as any).SpeechRecognition || 
-  (window as any).webkitSpeechRecognition;
- */
+//const SpeechRecognition = 
+  //typeof window !== "undefined" && 
+ // (window as any).SpeechRecognition || 
+ // (window as any).webkitSpeechRecognition;
+
   
 
 export const ChatForm = ({
@@ -174,4 +174,4 @@ export const ChatForm = ({
     </form>
   );
 };
- 
+  */

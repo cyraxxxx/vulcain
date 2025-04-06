@@ -17,9 +17,14 @@ export async function PATCH(
       return new NextResponse("Companion ID required", { status: 400 });
     }
 
-    if (!user || !user.id || !user.firstName) {
+    /* if (!user || !user.id || !user.firstName) {
       return new NextResponse("Unauthorized", { status: 401 });
-    }
+    } */
+
+      if (!user || !user.id || !user.username) {
+        return new NextResponse("Unauthorized", { status: 401 });
+      }
+    
 
     if (
       !src ||
@@ -46,7 +51,8 @@ export async function PATCH(
       data: {
         generalCategoryId,
         userId: user.id,
-        userName: user.firstName,
+        //userName: user.firstName,
+        userName: user.username,
         src,
         name,
         description,
@@ -57,7 +63,7 @@ export async function PATCH(
 
     return NextResponse.json(generalCompanion);
   } catch (error) {
-    console.log("[GENERALCOMPANION_PATCH]", error);
+    console.log("[GENERAL_COMPANION_PATCH]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
