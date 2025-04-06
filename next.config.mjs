@@ -35,6 +35,16 @@ const nextConfig = {
       },
     ],
   },
+
+  //Empecher le zoom sur Iphone
+  viewport: {
+    //deviceScaleFactor: 1,
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    //minimumScale: 1,
+    userScalable: false,
+  },
 };
 
 
