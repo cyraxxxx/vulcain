@@ -81,9 +81,7 @@ export const GeneralCategories = ({ data }: GeneralCategoriesProps) => {
           )}
           key={item.id}
         >
-          {/* {item.name} */}
           {t(item.name.toLowerCase())} 
-          {/* In this example, we're using the item.name.toLowerCase() to match the keys in your translations file. */}
         </button>
       ))}
     </div>
