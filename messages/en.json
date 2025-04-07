@@ -1,8 +1,12 @@
 {
+  "Auth": {
+    "vulcain": "Vulcain-AI",
+    "vulcainDescription": "Create Your Own AI Assistant, automate tasks and improve productivity"
+  },
   "HomePage": {
     "howItWorks": "How it works",
-    "howItWorks1": "Click on a virtual assistant to ask a question about golf.",
-    "howItWorks2": "Receive instant answers based on the official rules."
+    "howItWorks1": "Click on a virtual assistant to ask your questions.",
+    "howItWorks2": "Receive instant answers."
   },
   "Navbar": {
     "upgrade": "Upgrade"

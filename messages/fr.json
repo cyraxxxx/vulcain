@@ -1,8 +1,12 @@
 {
+  "Auth": {
+    "vulcain": "Vulcain-IA",
+    "vulcainDescription": "Créez votre propre assistant IA, automatiser les tâches et améliorer la productivité"
+  },
   "HomePage": {
     "howItWorks": "Comment utiliser l'application",
-    "howItWorks1": "Cliquez sur un assistant virtuel pour poser votre question au sujet du golf.",
-    "howItWorks2": "Recevez des réponses instantanées basées sur les règles officielles."
+    "howItWorks1": "Cliquez sur un assistant virtuel pour poser vos questions",
+    "howItWorks2": "Recevez des réponses instantanées."
 
   },
   "Navbar": {
