@@ -11,13 +11,14 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { ProModal } from "@/components/pro-modal";
+
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Golferee",
-  description: "Votre assistant personnel sur le green.",
+  title: "Vulcain IA",
+  description: "Créez votre propre assistant IA, automatiser les tâches et améliorer la productivité",
 };
 
 export default async function RootLayout({
